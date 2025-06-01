@@ -1,15 +1,23 @@
 package com.bergamos.clientCRUD.dto;
 
+import com.bergamos.clientCRUD.entities.Client;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+
 import java.time.LocalDate;
 
 public class ClientDTO {
 
-   private Long id;
-   private String name;
-   private String cpf;
-   private Double income;
-   private LocalDate birthDate;
-   private Integer children;
+    private Long id;
+    @NotBlank(message = "Required field")
+    private String name;
+    private String cpf;
+    private Double income;
+    @PastOrPresent(message = "Birthday cannot be on a future date")
+    private LocalDate birthDate;
+    private Integer children;
 
     public ClientDTO() {
     }
